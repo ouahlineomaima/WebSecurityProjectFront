@@ -5,7 +5,8 @@ import { useState } from "react";
 import API from '../../Api';
 
 function SearchClient({ name, onNameChange }) {
-    const [cmd, setcmd] = useState('');
+    const [cmd, setcmd] = useState(null);
+    const [errorMessage, setErrorMessage] = useState(null);
     console.log(cmd);
 
   const handleSubmit = (event) => {
@@ -16,7 +17,13 @@ function SearchClient({ name, onNameChange }) {
       .then((res) => {
         console.log(res);
         console.log(res.data);
-        onNameChange(res.data);
+        if (res.data != ''){
+          onNameChange(res.data);
+        }
+        else{
+          setErrorMessage(cmd);
+        }
+        
       });
       
   };
@@ -34,7 +41,9 @@ function SearchClient({ name, onNameChange }) {
           <button className="btn-search" type="submit">
             <BsSearch />
           </button>
+          
         </div>
+        <div>{errorMessage}</div>
       </div>
     </form>
   )

@@ -17,13 +17,13 @@ import Upload from "./ClientHandler/Upload";
 
 function Client() {
   const [users, setUsers] = useState(null);
-
   const [user, setUser] = useState({
     id: "",
     nom: "",
     prenom: "",
     age: "",
   });
+
 
   return (
     <div className="page-wrapper bg-red p-t-180 p-b-100 font-robo">
